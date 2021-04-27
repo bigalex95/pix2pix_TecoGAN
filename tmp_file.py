@@ -46,6 +46,11 @@ class WebcamVideoStream:
         self.stopped = True
 
 
+# PYTORCH GPU CONFIGURATIONS
+device = torch.device('cuda:1')
+torch.cuda.set_device(device)
+print('Active CUDA Device: GPU', torch.cuda.current_device())
+
 with open(osp.join("./TecoGAN_PyTorch/experiments_BD/TecoGAN/001", "live.yml"), 'r') as f:
     opt = yaml.load(f.read(), Loader=yaml.FullLoader)
 
@@ -61,7 +66,7 @@ base_utils.setup_logger('base')
 opt['verbose'] = opt.get('verbose', False)
 
 # device
-opt['device'] = 'cuda'
+opt['device'] = device
 
 # setup paths
 base_utils.setup_paths(opt, mode='test')
@@ -103,7 +108,7 @@ def live(opt):
             image = cap.read()
             if image.any():
                 # print(image.shape)
-                # image = cv2.resize(image, (128, 128))
+                # image = cv2.resize(image, (512, 512))
                 cv2.imshow("LR image", image)
                 # cv2.imwrite("LR_image.png", image)
                 norm_image = cv2.normalize(
