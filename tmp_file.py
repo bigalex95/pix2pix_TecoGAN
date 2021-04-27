@@ -108,7 +108,7 @@ def live(opt):
             image = cap.read()
             if image.any():
                 # print(image.shape)
-                # image = cv2.resize(image, (512, 512))
+                image = cv2.resize(image, (512, 512))
                 cv2.imshow("LR image", image)
                 # cv2.imwrite("LR_image.png", image)
                 norm_image = cv2.normalize(
