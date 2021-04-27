@@ -3,7 +3,6 @@ scale: 4
 manual_seed: 0
 verbose: true
 
-
 # dataset configs
 dataset:
   degradation:
@@ -26,19 +25,17 @@ dataset:
     num_workers: 4
     pin_memory: true
 
-
 # model configs
 model:
   name: FRVSR
 
   generator:
-    name: FRNet  # frame-recurrent network
+    name: FRNet # frame-recurrent network
     in_nc: 3
     out_nc: 3
     nf: 64
     nb: 10
     load_path: TecoGAN_PyTorch/pretrained_models/TecoGAN_BD_iter500000.pth
-
 
 # test configs
 test:
