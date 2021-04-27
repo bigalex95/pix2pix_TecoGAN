@@ -77,7 +77,7 @@ def live(opt):
     cap = WebcamVideoStream(src="video.mp4").start()
     image = cap.read()
     out = cv2.VideoWriter('output.avi', -1, 20.0,
-                          (image.shape[0]*4, image.shape[1]*4))
+                          (image.shape[1]*4, image.shape[0]*4))
 
     # logging
     logger = base_utils.get_logger('base')
