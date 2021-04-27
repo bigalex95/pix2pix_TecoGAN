@@ -74,7 +74,10 @@ def live(opt):
     cv2.namedWindow("LR image", cv2.WINDOW_NORMAL)
     cv2.namedWindow("HR image", cv2.WINDOW_NORMAL)
     # cap = cv2.VideoCapture(0)
-    cap = WebcamVideoStream(src=0).start()
+    cap = WebcamVideoStream(src="video.mp4").start()
+    image = cap.read()
+    out = cv2.VideoWriter('output.avi', -1, 20.0,
+                          (image.shape[0], image.shape[0]))
 
     # logging
     logger = base_utils.get_logger('base')
@@ -100,8 +103,8 @@ def live(opt):
             image = cap.read()
             if image.any():
                 # print(image.shape)
-                image = cv2.resize(image, (128, 128))
-                cv2.imshow("LR image", image)
+                # image = cv2.resize(image, (128, 128))
+                # cv2.imshow("LR image", image)
                 # cv2.imwrite("LR_image.png", image)
                 norm_image = cv2.normalize(
                     image, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
@@ -109,6 +112,7 @@ def live(opt):
                 hr_image = model.infer_live(tmp_torch)
                 cv2.imshow("HR image", hr_image[0])
                 # cv2.imwrite("HR _image.png", hr_image[0])
+                out.write(hr_image[0])
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     cv2.destroyAllWindows()
                     cap.stop()
