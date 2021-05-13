@@ -41,6 +41,7 @@ pycodestyle==2.7.0
 pyfakewebcam==0.1.0
 Pygments==2.8.1
 python-dateutil==2.8.1
+pyvirtualcam==0.8.0
 PyYAML==5.4.1
 pyzmq==22.0.3
 requests==2.25.1
