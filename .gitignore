@@ -142,3 +142,4 @@ cython_debug/
 */results/
 */model/
 /model/
+*/training_checkpoints/
