@@ -11,17 +11,26 @@ import os.path as osp
 from TecoGAN_PyTorch.codes.models import define_model
 from imutils.video import FPS
 
+with open(r'./config/conf.yaml') as file:
+    conf = yaml.load(file, Loader=yaml.FullLoader)
+
 # PIX2PIX AND TECOGAN CONFIGURATIONS
-pix2pix_size = 512
+camera_src = conf["camera_src"]
+preview_width = conf["preview_width"]
+preview_height = conf["preview_height"]
+pix2pix_gpu = conf["pix2pix_gpu"]
+tecogan_gpu = conf["tecogan_gpu"]
+pix2pix_size = conf["pix2pix_size"]
 pix2pix_norm = (pix2pix_size/2) - 0.5
-pix2pix_model_path = "./model/pix2pixTF"
-tecogan_size = 256
-tecogan_conf_path = "./config/"
-check_input_src = True
-check_tecogan = False
-check_denoise = True
-check_display = True
-check_webcam = True
+pix2pix_model_path = conf["pix2pix_model_path"]
+tecogan_size = conf["tecogan_size"]
+tecogan_conf_path = conf["tecogan_conf_path"]
+check_input_src = conf["check_input_src"]
+check_tecogan = conf["check_tecogan"]
+check_denoise = conf["check_denoise"]
+check_display = conf["check_display"]
+check_webcam = conf["check_webcam"]
+check_pix2pix = conf["check_pix2pix"]
 
 # TENSORFLOW GPU CONFIGURATIONS
 # tf.debugging.set_log_device_placement(True)
@@ -30,8 +39,8 @@ print(gpus)
 if gpus:
     # Restrict TensorFlow to only use the first GPU
     try:
-        tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
-        tf.config.experimental.set_memory_growth(gpus[0], True)
+        tf.config.experimental.set_visible_devices(gpus[pix2pix_gpu], 'GPU')
+        tf.config.experimental.set_memory_growth(gpus[pix2pix_gpu], True)
         # tf.config.experimental.set_memory_growth(gpus[1], True)
         logical_gpus = tf.config.experimental.list_logical_devices('GPU')
         print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPU")
@@ -102,7 +111,7 @@ base_utils.setup_logger('base')
 opt['verbose'] = False
 
 # device
-opt['device'] = "cpu"  # device
+opt['device'] = "cuda:" + str(tecogan_gpu)  # device
 
 # setup paths
 base_utils.setup_paths(opt, mode='test')
@@ -150,9 +159,9 @@ def live(opt):
         check_input()
 
     cv2.namedWindow("output", cv2.WINDOW_NORMAL)
-    cv2.resizeWindow("output", 1024, 1024)
+    cv2.resizeWindow("output", preview_width, preview_height)
     # cap = cv2.VideoCapture(0)
-    cap = WebcamVideoStream(src=1, device=cv2.CAP_DSHOW).start()
+    cap = WebcamVideoStream(src=camera_src, device=cv2.CAP_DSHOW).start()
     if check_tecogan:
         # logging
         logger = base_utils.get_logger('base')
@@ -178,7 +187,8 @@ def live(opt):
                 image = cap.read()
                 if image.any():
                     # print(image.shape)
-                    image = pix2pix(image)
+                    if check_pix2pix:
+                        image = pix2pix(image)
 
                     if pix2pix_size != tecogan_size:
                         image = cv2.resize(
@@ -218,7 +228,8 @@ def live(opt):
             if image.any():
                 # print(image.shape)
 
-                image = pix2pix(image)
+                if check_pix2pix:
+                    image = pix2pix(image)
 
                 image = cv2.normalize(
                     image, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
