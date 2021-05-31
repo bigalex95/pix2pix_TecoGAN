@@ -1,0 +1,17 @@
+name : "_camera"
+format : ".jpg"
+camera_src : 0
+pix2pix_gpu : 0
+tecogan_gpu : 0
+preview_width : 1400
+preview_height : 800
+pix2pix_size : 512
+pix2pix_model_path : "./model/pix2pixTF"
+tecogan_size : 256
+tecogan_conf_path : "./config/"
+check_input_src : 1
+check_tecogan : 0
+check_denoise : 0
+check_display : 1
+check_webcam : 1
+check_pix2pix : 1
