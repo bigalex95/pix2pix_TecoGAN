@@ -146,3 +146,6 @@ cython_debug/
 */output/
 ./output/
 /output/
+results/
+.vscode/
+*.vscode/
