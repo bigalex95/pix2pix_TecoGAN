@@ -137,6 +137,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-pretrained_models/
-data/
-results/
+pretrained_models/*
+data/*
+results/*

@@ -137,15 +137,14 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-*/pretrained_models/
-*/data/
-*/results/
-*/model/
-/model/
-*/training_checkpoints/
-*/output/
-./output/
-/output/
-results/
-.vscode/
-*.vscode/
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+**/results/
+**/model/
+**/training_checkpoints/
+**/output/
