@@ -1,5 +1,3 @@
-# pix2pix_TecoGAN
-
 Combined Pix2Pix (Conditional GAN) and TecoGAN (TEmporally COherent GAN) super resolution Networks.
 
 ### Step 1. Clone repository
