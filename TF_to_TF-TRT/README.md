@@ -4,12 +4,12 @@ You can convert trained checkpoints to saved_model type for using in your script
 ## Usage
 
 ### Step 1. Clone repository
-```
+```bash
 git clone https://github.com/bigalex95/pix2pix_TecoGAN
 cd ./TF_to_TF-TRT
 ```
 ### Step 2. Create virtualenv and install necessary libraries.
-```
+```bash
 # create virtualenv
 python -m venv venv_name
 # change environment to virtualenv
@@ -19,7 +19,7 @@ python -m venv venv_name
 ### 2. PowerShell
 ./venv_name/Scripts/activate.ps1
 ## Linux bash
-./venv_name/bin/activate
+source ./venv_name/bin/activate
 # install packages
 pip install -r requirements.txt
 ```

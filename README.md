@@ -15,7 +15,7 @@ python -m venv venv_name
 ### 2. PowerShell
 ./venv_name/Scripts/activate.ps1
 ## Linux bash
-./venv_name/bin/activate
+source ./venv_name/bin/activate
 # install packages
 pip install -r requirements.txt
 ```
