@@ -1,11 +1,11 @@
 # Combined Pix2Pix (Conditional GAN) and TecoGAN (TEmporally COherent GAN) super resolution Networks.
 
 ### Step 1. Clone repository
-```sh
+```bash
 git clone https://github.com/bigalex95/pix2pix_TecoGAN
 ```
 ### Step 2. Create virtualenv and install necessary libraries.
-```sh
+```bash
 # create virtualenv
 python -m venv venv_name
 # change environment to virtualenv
@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ## Usage
 
 ### Step 1. Run jupyter notebook.
-```sh
+```bash
 jupyter notebook
 ```
 You should see the notebook open in your browser.
@@ -37,7 +37,7 @@ You should see the notebook open in your browser.
 
 ## Compile to execution file
 ### Step 1. Use auto-py-to-exe library for compiling.
-```sh
+```bash
 # Windows
 auto-py-to-exe.exe
 # Linux
