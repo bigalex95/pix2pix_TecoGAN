@@ -1,0 +1,10 @@
+auto-py-to-exe
+opencv-python
+pyfakewebcam
+pyvirtualcam
+PyYAML
+tensorflow
+termcolor
+torch
+torchaudio
+torchvision
