@@ -148,3 +148,9 @@ cython_debug/
 **/model/
 **/training_checkpoints/
 **/output/
+# Local model artifacts / outputs
+model/
+training_checkpoints/
+TecoGAN_PyTorch/pretrained_models/
+results/
+.vscode/
